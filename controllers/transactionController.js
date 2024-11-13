@@ -1,17 +1,16 @@
-
 const express = require('express');
 const router = express.Router();
 const orderModel = require('../models/orderModel');
 
 async function createOrder(req, res) {
-    const { userId, trackingId, amount, amountTax } = req.body;
+    const { userId, trackingId, amount, amountTax, creditCard } = req.body;
 
-    if (!userId || !trackingId || !amount || !amountTax) {
+    if (!userId || !trackingId || !amount || !amountTax || !creditCard) {
         return res.status(400).json({ success: false, message: 'Invalid order data' });
     }
 
     try {
-        const result = await orderModel.createOrder(userId, trackingId, amount, amountTax);
+        const result = await orderModel.createOrder(userId, trackingId, amount, amountTax, creditCard);
 
         if (result.success) {
             res.status(201).json({

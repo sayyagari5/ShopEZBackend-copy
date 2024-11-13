@@ -22,4 +22,18 @@ poolConnect.then(() => {
     process.exit(1);
 });
 
+async function addCreditCardColumn() {
+    try {
+        await sql.connect(config);
+        //await sql.query`ALTER TABLE Orders ADD credit_card VARCHAR(255)`;
+        console.log('Credit card column added successfully');
+    } catch (err) {
+        console.error('Error adding credit card column:', err);
+    } finally {
+        sql.close();
+    }
+}
+
+addCreditCardColumn();
+
 module.exports = { pool, poolConnect }; 
