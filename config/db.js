@@ -34,6 +34,4 @@ async function addCreditCardColumn() {
     }
 }
 
-addCreditCardColumn();
-
 module.exports = { pool, poolConnect }; 
